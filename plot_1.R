@@ -1,0 +1,7 @@
+data <- read.table("household_power_consumption.txt",header=TRUE,sep=";")
+subdata <- subset(data,data$Date %in% c('1/2/2007','2/2/2007'))
+subdata$Date <- as.Date(subdata$Date,format='%d/%m/%Y')
+subdata$Time <- strptime(subdata$Time, format = '%H:%M:%S')
+png(filename='plot_1.png')
+hist(as.numeric(as.character(subdata$Global_active_power)),col="red",main="Global Active Power",xlab="Global Active Power(kilowatts)")
+dev.off()
